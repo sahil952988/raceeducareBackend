@@ -15,7 +15,9 @@ connectDB();
 const app = express();
 
 //middelwares
-app.use(cors());
+app.use(cors(
+
+));
 app.use(express.json());
 app.use(morgan('dev'));
 
@@ -23,12 +25,8 @@ app.use(morgan('dev'));
 app.use('/api/auth', authRoutes);
 
 //rest api
-
-app.get("/", (req, res) => {
-  res.send("<h1>Welcome to ecommerce app</h1>");
-});
-// app.use(express.static('public'));
-// app.use('*', (_req, res) => res.sendFile('./public/index.html', { root: './' }));
+app.use(express.static('public'));
+app.use('*', (_req, res) => res.sendFile('./public/index.html', { root: './' }));
 
 //PORT
 const PORT = process.env.PORT || 4000;
